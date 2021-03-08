@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/ltm/conan/BuildConfig.java
+ com.ltm.conan.BuildConfig
