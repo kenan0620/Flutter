@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(new HomePage1());
+void main() => runApp(new HomePage());
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,29 +13,23 @@ class HomePage extends StatelessWidget {
           title: new Text('Welcome to Flutter'),
         ),
         body: new Center(
-          child: new Text('Hello World Flutter!'),
+          child: new RandomWords(),
         ),
       ),
     );
   }
 }
 
-class HomePage1 extends StatelessWidget {
+//单词生成类
+class RandomWords extends StatefulWidget {
+  @override
+  createState() => new RandomWordsState();
+}
+
+class RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
-    //初始化一个随机变量
     final wordPair = new WordPair.random();
-
-    return new MaterialApp(
-      title: 'Welcome to Flutter',
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Welcome to Flutter1'),
-        ),
-        body: new Center(
-          child: new Text(wordPair.asPascalCase),
-        ),
-      ),
-    );
+    return new Text(wordPair.asPascalCase);
   }
 }
