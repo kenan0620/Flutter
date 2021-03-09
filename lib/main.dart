@@ -8,6 +8,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Welcome to Flutter',
+      theme: new ThemeData(
+        primaryColor: Colors.amberAccent,
+      ),
       home: new RandomWords(),
     );
   }
