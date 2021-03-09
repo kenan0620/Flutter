@@ -26,8 +26,38 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('ListView Flutter Conan'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestins(),
+    );
+  }
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+          builder: (context){
+            final tiles = _saved.map(
+                (pair){
+                  return new ListTile(
+                    title: new Text(
+                      pair.asPascalCase,
+                      style: _biggerFont,
+                    ),
+                  );
+                });
+
+            final divided = ListTile.divideTiles(tiles: tiles,
+            context: context).toList();
+
+            return new Scaffold(
+              appBar: new AppBar(
+                title: new Text('Saved Suggestions'),
+              ),
+              body: new ListView(children: divided,),
+            );
+          }
+          )
     );
   }
 
@@ -60,7 +90,7 @@ class RandomWordsState extends State<RandomWords> {
       ),
       trailing: new Icon(
         alreadSaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadSaved ? Colors.red : Colors.grey,
+        color: alreadSaved ? Colors.red : Colors.orangeAccent,
       ),
       onTap: () {
         //在Flutter的响应式风格的框架中，调用setState()会为State对象触发build()方法，从而导致对UI的更新
