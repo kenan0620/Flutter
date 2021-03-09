@@ -21,9 +21,8 @@ class RandomWords extends StatefulWidget {
 
 class RandomWordsState extends State<RandomWords> {
   @override
-
+// 构建
   Widget build(BuildContext context) {
-
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('ListView Flutter Conan'),
@@ -32,9 +31,11 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
+  //建议单词列表
   final _suggestions = <WordPair>[];
+  //字体大小
   final _biggerFont = const TextStyle(fontSize: 18.0);
-
+//构建建议单词
   Widget _buildSuggestins() {
     return new ListView.builder(itemBuilder: (context, i) {
       if (i.isOdd) return new Divider();
@@ -49,13 +50,32 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-
+  // 构建展示单词
   Widget _buildRow(WordPair pair) {
+    final alreadSaved = _saved.contains(pair);
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
+      trailing: new Icon(
+        alreadSaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadSaved ? Colors.red : Colors.grey,
+      ),
+      onTap: () {
+        //在Flutter的响应式风格的框架中，调用setState()会为State对象触发build()方法，从而导致对UI的更新
+        setState(() {
+          if (alreadSaved) {
+            _saved.remove(pair);
+          }else{
+            _saved.add(pair);
+          }
+        });
+      },
     );
   }
+
+  //数据集合 Set比list更好，因为set数据不允许重复
+  final _saved = new Set<WordPair>();
+
 }
