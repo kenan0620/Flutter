@@ -29,7 +29,7 @@ class HomePage1 extends StatelessWidget {
           title: new Text('Welcome to Flutter1'),
         ),
         body: new Center(
-          child: new Text('1 Hello World Flutter!'),
+          child: new Text('Conan ，Hello World Flutter !'),
         ),
       ),
     );
